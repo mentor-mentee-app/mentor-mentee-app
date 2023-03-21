@@ -16,7 +16,7 @@ pnpm run dev
 
 Or from the projects root:
 
-```
+```console
 pnpn run back
 ```
 
