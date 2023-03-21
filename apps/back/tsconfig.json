@@ -1,0 +1,5 @@
+{
+  "extends": "tsconfig/express.json",
+  "include": ["/**/*.ts", "src/index.js"],
+  "exclude": ["node_modules"]
+}
