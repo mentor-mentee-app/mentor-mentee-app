@@ -97,6 +97,8 @@ For first commit on a new branch, the branch needs to be pushed for it to be pub
 git push --set-upstream origin my-branch-name
 ```
 
-When this is ready, it can then a Merge Request (MR) can be created.
+When this is ready, it can then a Pull Request (PR) can be created.
 
-Finally, it can be merged to `master` branch, and thus the new changes are now "the latest working code"
+A code review of a mentor (and peers) should be asked.
+
+Finally, once a reveiw has passed, it can be merged to `master` branch, and thus the new changes are now "the latest working code"
