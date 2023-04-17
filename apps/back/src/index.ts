@@ -14,15 +14,18 @@ config();
 
     app.get('/',(req, res, next) => {
         res.send(`<form method="POST" action="/login">
-        <div>Email: <input type="text" name="email" /></div>
-        <div>Password: <input type="password" name="password"/> </div>
-        <div><input type="submit" value="Submit" /></div>
+        <div style="font-family: verdana; font-size: 25px; margin-botton: 15px; color: blue;">Email: <input type="text" name="email" /></div>
+        <div style="font-family: verdana; font-size: 25px; margin-botton: 15px;">Password: <input type="password" name="password"/> </div>
+        <div><input type="submit" value="Submit"  style="font-size: 25px;"/></div>
         </form>`);
     });
+
+
 
     app.post('/login', (req, res) => {
         const data = req.body;
         console.log(data)
+        
         res.send(data);
     });
 
