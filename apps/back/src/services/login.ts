@@ -1,19 +1,12 @@
-import bcrypt from 'bcrypt';
-
-const saltRounds = 10;
-
 const data = {
-  user: "davis.bojars@gmail.com",
+  email: "pareizs@e-pasts.lv",
   password: "parole",
   passwordHash: ""
 }
 
-export const login = async (username, password) => {
-  if (data.user === username) {
-    const result = bcrypt.compare(password, data.passwordHash);
+export const login = async (email, password) => {
+  if (data.email === email && data.password === password) {
+    return true;
   }
-}
-
-export const register = async (username, password) => {
-  
+  return false;
 }

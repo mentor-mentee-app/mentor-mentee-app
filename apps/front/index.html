@@ -4,9 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mentor Mentee app</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/app.ts"></script>
+    <div id="status"></div>
+    <form id="forma">
+      <div>Email: <input type="text" name="email" /></div>
+      <div>Password: <input type="password" name="password" /></div>
+      <div><input type="submit" value="Submit" id="submit" /></div>
+    </form>
+    <!-- <script type="module" src="/src/app.ts"></script> -->
+
+    <script>
+      $("#forma").submit(function( event ) {
+        const email = $('input[name="email"]').val();
+        const password = $('input[name="password"]').val();
+        event.preventDefault();
+
+        $.ajax({
+          method: "POST",
+          url: "http://127.0.0.1:8000/login",
+          dataType: "json",
+          data: JSON.stringify({
+            email: email,
+            password: password
+          }),
+          contentType: "application/json",
+          success: function( result ) {
+            if (result.success) {
+              $( "#status" ).html( "<strong>Logged in</strong>" );
+            } else {
+              $( "#status" ).html( "<strong>Incorrect email or password</strong>" );
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
