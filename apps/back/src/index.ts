@@ -1,30 +1,40 @@
 import { config } from 'dotenv';
 import express from 'express';
-import { urlencoded } from 'body-parser';
+import cors from 'cors';
+import { json } from 'body-parser'; 
 
 config();
 
+import { login } from './services/login'
 
-
-    function createServer() {
+function createServer() {
     const app = express();
-    app.use(urlencoded())
+    app.use(cors());
+    app.use(json());
 
     const port = process.env.PORT;
 
-    app.get('/',(req, res, next) => {
-        res.send(`<form method="POST" action="/login">
-        <div>Email: <input type="text" name="email" /></div>
-        <div>Password: <input type="password" name="password"/> </div>
-        <div><input type="submit" value="Submit" /></div>
-        </form>`);
+    app.get('/', (req, res, next) => {
+        res.send(`ROOT`);
     });
 
-    app.post('/login', (req, res) => {
+    app.post('/login', async (req, res) => {
         const data = req.body;
-        console.log(data)
-        res.send(data);
-    });
+        console.log(data);
+
+        const result = await login(data.email, data.password)
+        if (result) {
+            res.send({ success: true })
+        } else {
+            res.send({ success: false })
+        }
+
+        // if (data.email === 'pareizs@e-pasts.lv') {
+        //     return res.json({ success: true });
+        // } else {
+        //     return res.json({ success: false });
+        // }
+    })
 
     app.listen(port, () => {
         console.log(`[server]: Server is running at http://localhost:${port}`);
