@@ -15,25 +15,17 @@ function createServer() {
     const port = process.env.PORT;
 
     app.get('/', (req, res, next) => {
-        res.send(`ROOT`);
+        res.send(`BE root`);
     });
 
     app.post('/login', async (req, res) => {
         const data = req.body;
-        console.log(data);
-
         const result = await login(data.email, data.password)
         if (result) {
             res.send({ success: true })
         } else {
             res.send({ success: false })
         }
-
-        // if (data.email === 'pareizs@e-pasts.lv') {
-        //     return res.json({ success: true });
-        // } else {
-        //     return res.json({ success: false });
-        // }
     })
 
     app.listen(port, () => {
