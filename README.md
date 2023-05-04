@@ -50,7 +50,7 @@ Back end is located in `apps/back`
 To Run both front & back end you can run
 
 ```console
-pnpn run dev
+pnpm run dev
 ```
 
 from the root project. That will bring up the
