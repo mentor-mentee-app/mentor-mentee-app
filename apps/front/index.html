@@ -58,6 +58,9 @@
             email: email,
             password: password
           }),
+          xhrFields: {
+            withCredentials: true
+          },
           contentType: "application/json",
           success: function( result ) {
             if (result.success) {
