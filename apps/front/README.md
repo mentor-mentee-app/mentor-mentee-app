@@ -17,5 +17,5 @@ pnpm run dev
 Or from the projects root:
 
 ```console
-pnpn run front
+pnpm run front
 ```
