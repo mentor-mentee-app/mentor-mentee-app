@@ -27,14 +27,14 @@ function createServer() {
     const port = process.env.PORT;
 
     app.get('/', (req, res, next) => {
-        res.send(`BE root` + /* req.session.loggedIn */);
+        res.send(`BE root` + req.session['loggedIn']);
     });
 
     app.post('/login', async (req, res) => {
         const data = req.body;
         const result = await login(data.email, data.password);
 
-        /* req.session.loggedIn = true; */
+        req.session['loggedIn'] = true;
 
         if (result) {
             res.send({ success: true })
