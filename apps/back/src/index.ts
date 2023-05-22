@@ -9,9 +9,13 @@ config();
 import { login } from './services/login'
 
 function createServer() {
+    
+
+    const feURL = process.env.FE_URL;
+
     const app = express();
     app.use(cors({
-        origin: 'http://127.0.0.1:5173',
+        origin: `${feURL}`,
         optionsSuccessStatus: 200,
         credentials: true
     }));
@@ -27,16 +31,21 @@ function createServer() {
     const port = process.env.PORT;
 
     app.get('/', (req, res, next) => {
-        res.send(`BE root` + req.session['loggedIn']);
+        const loggedIn = req.session['loggedIn']
+        const email = req.session['email']
+        res.send(`BE root  loggedIn: ${loggedIn}, email: ${email}`)
     });
 
     app.post('/login', async (req, res) => {
         const data = req.body;
         const result = await login(data.email, data.password);
 
-        req.session['loggedIn'] = true;
+       
 
         if (result) {
+           
+            req.session['loggedIn'] = true;
+            req.session['email'] = data.email;
             res.send({ success: true })
         } else {
             res.send({ success: false })
