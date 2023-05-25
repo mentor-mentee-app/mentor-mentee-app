@@ -5,118 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mentor Mentee app</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <style type="text/css">
-    #container {
-      margin: 100px auto;
-      width: 300px;
-    }
-
-    #status {
-      text-align: center;
-      display: none;
-    }
-
-    #forma {
-      display: none;
-    }
-
-    #logout {
-      color: lightseagreen;
-      cursor: pointer;
-      display: block;
-      margin-top: 20px;
-    }
-
-    .field>label {
-      display: inline-block;
-      width: 90px;
-      text-align: right;
-    }
-
-    .field {
-      margin: 10px;
-    }
-
-    .button {
-      margin-left: 104px;
-    }
-  </style>
+ 
 </head>
 
 <body>
   <div id="app"></div>
-  <!-- <script type="module" src="/src/app.ts"></script> -->
+ <script type="module" src="/src/app.ts"></script> 
 
-  <div id="container">
-    <div id="status"></div>
-    <form id="forma">
-      <div class="field"><label for="email">E-pasts:</label> <input type="text" name="email" /></div>
-      <div class="field"><label for="password">Parole:</label> <input type="password" name="password" /></div>
-      <div class="button"><input type="submit" value="Iežurnalēties" id="submit" /></div>
-    </form>
-  </div>
-
-  <script>
-    const beUrl = "http://localhost:8000";
-
-    function showOnlyStatus() {
-      $("#status").show();
-      $('#forma').hide();
-    }
-
-    function showOnlyForm() {
-      $('#forma').show();
-      $("#status").hide();
-    }
-
-    $.ajax({
-      method: "GET",
-      url: `${beUrl}/me`,
-      dataType: "json",
-      xhrFields: {
-        withCredentials: true
-      },
-      contentType: "application/json",
-      success: function (result) {
-        if (result.loggedIn) {
-          $("#status").html(`<strong>Welcome ${result.email}</strong><a href="${beUrl}/logout" id="logout">Izlogoties</a>`);
-          showOnlyStatus();
-        } else {
-          showOnlyForm();
-        }
-      }
-    });
-
-    $("#forma").submit(function (event) {
-      const email = $('input[name="email"]').val();
-      const password = $('input[name="password"]').val();
-
-      event.preventDefault();
-
-      $.ajax({
-        method: "POST",
-        url: `${beUrl}/login`,
-        dataType: "json",
-        data: JSON.stringify({
-          email: email,
-          password: password
-        }),
-        xhrFields: {
-          withCredentials: true
-        },
-        contentType: "application/json",
-        success: function (result) {
-          if (result.success) {
-            window.location.reload();
-          } else {
-            $("#status").show();
-            $("#status").html("<strong>Incorrect email or password</strong>");
-          }
-        }
-      });
-    });
-  </script>
+ 
 </body>
 
 </html>

@@ -52,7 +52,7 @@ function createServer() {
 
     app.get('/logout', async (req, res) => {
         req.session.destroy(() => {
-            res.redirect(`${feURL}`);
+            res.redirect(`${feURL}/login.html`);
         });
     });
 
